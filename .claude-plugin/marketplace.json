@@ -1,0 +1,14 @@
+{
+  "name": "docflow",
+  "description": "Spec-first, docs-driven development skills that pair with the sous-chef orchestrator.",
+  "owner": {
+    "name": "Michal Till"
+  },
+  "plugins": [
+    {
+      "name": "docflow",
+      "source": "./",
+      "description": "Spec-first, docs-driven development for the sous-chef workflow: /docflow:spec and /docflow:accept."
+    }
+  ]
+}
