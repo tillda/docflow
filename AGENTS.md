@@ -7,7 +7,7 @@ sous-chef orchestrator. Markdown and JSON only - no build step, no code to compi
 
 - `.claude-plugin/` - plugin + marketplace manifests
 - `skills/spec|accept/` - the two skills (each `SKILL.md` + optional `references/`)
-- `templates/` - the `CLAUDE.docflow.md` glue snippet users append to their CLAUDE.md
+- `templates/` - `integration.md` - how and where to wire the docflow-sous-chef loop into CLAUDE.md
 
 ## Working agreements
 

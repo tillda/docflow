@@ -74,5 +74,5 @@ divergence you surfaced or `@TODO`/OPEN item still standing.
 - Divergence is surfaced for the owner to resolve, never transcribed into the docs.
 - The numbered spec is finalized once, committed with the feature, then frozen.
 - Nothing runs accept automatically - you invoke it, or wire the offer into your
-  `CLAUDE.md` routing (see docflow's `templates/CLAUDE.docflow.md`). It never runs
+  `CLAUDE.md` routing (see docflow's `templates/integration.md`). It never runs
   silently; the doc update is owner-gated.

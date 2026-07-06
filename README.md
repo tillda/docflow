@@ -29,8 +29,8 @@ docflow is the docs-driven *bookends*; sous-chef is the *engine* in between:
 The two plugins stay cleanly separated. docflow points *forward* at `/sous-chef:*`; it
 never edits sous-chef. The one piece of glue that makes `serve` aware of the loop lives
 in **your `CLAUDE.md`**, not in either plugin - so sous-chef stays pure upstream (no fork,
-no merges). Append [`templates/CLAUDE.docflow.md`](templates/CLAUDE.docflow.md) to
-`~/.claude/CLAUDE.md` (or a repo `CLAUDE.md`).
+no merges). See [`templates/integration.md`](templates/integration.md) for the glue block
+and where to put it.
 
 ## Install
 
@@ -46,7 +46,8 @@ For local development, point the marketplace at your checkout instead:
 /plugin install docflow@docflow
 ```
 
-Then append `templates/CLAUDE.docflow.md` to your `CLAUDE.md` to wire the loop. Install
+Then wire the loop by adding the glue block from `templates/integration.md` to your
+`CLAUDE.md` (that guide covers where to put it and whether you need it). Install
 sous-chef separately (see its README).
 
 ## Why a separate plugin
