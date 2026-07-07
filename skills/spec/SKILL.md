@@ -90,23 +90,29 @@ dependencies, a clear source of truth).
   structure A allows X but forecloses Y). Ordinary implementation detail is not the
   owner's to decide here.
 
-## 4. Plan and confirm - the gate
+## 4. Draft and confirm - the gate
 
-Before writing any file, present a short, scannable plan in chat and get approval - do
-not author until they accept. One line per item:
+Before writing any file, draft the **entire spec** - the complete text, following
+[references/spec-template.md](references/spec-template.md) and the principles in step 5,
+exactly as it will land on disk - and show that whole draft in chat. The owner must see
+the full proposed content to comment on it; a summary of what it *will* contain is not a
+substitute. Get approval - do not author the file until they accept.
+
+Lead the draft with a short, scannable orientation so it's quick to review against - one
+line per item:
 
 - **Decided** - the wanted-state calls reached this run.
 - **Clarified** - each drift or ambiguity now resolved, with its resolution.
 - **Open** - anything unsettled at the round cap, headed for the spec's OPEN section.
 - **Output** - the spec's file path.
 
-A correction here is the owner steering - fold it in and proceed; it's a review, not a
-new interview round.
+Then show the full drafted spec beneath it. A correction here is the owner steering -
+fold it into the draft and proceed; it's a review, not a new interview round.
 
 ## 5. Write the spec
 
-Write the feature-spec using [references/spec-template.md](references/spec-template.md)
-into the **spec archive - a directory kept separate from the project's main docs**, with
+Write the approved draft into the **spec archive - a directory kept separate from the
+project's main docs**, with
 a numbered filename: default `docs/tickets/NNNN-<slug>.md`, where `NNNN` is the next
 zero-padded number after the highest already in that directory (start at `0001`). Create
 the dir if needed; honour any location the repo or user specifies; never overwrite an
@@ -148,7 +154,8 @@ committed with the feature and left as a frozen record.
 - The owner's interview answers override docs and code when they conflict.
 - Always ask a real second round; over-asking is cheap, a baked-in wrong assumption is
   not.
-- Plan and get approval before writing any file.
+- Show the full drafted spec in chat and get approval before writing any file - the
+  owner approves the actual content, never just a summary of it.
 - The spec is the wanted state; tag not-yet-built parts `@TODO`.
 - The spec lives in a numbered per-feature archive separate from the main docs and is
   committed with the feature it specifies - a frozen record, not a competing source of
