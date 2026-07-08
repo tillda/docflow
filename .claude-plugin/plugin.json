@@ -1,7 +1,7 @@
 {
   "name": "docflow",
   "description": "Spec-first, docs-driven development for the sous-chef workflow. /docflow:spec interviews you into a numbered spec before any code (which /sous-chef:serve or :fire implements from), and /docflow:accept folds the shipped feature back into your main docs so they stay the living source of truth. Head chef only - no delegation.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Michal Till"
   },
