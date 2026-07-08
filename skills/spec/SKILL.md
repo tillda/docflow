@@ -122,10 +122,15 @@ main doc: written once here, finalized by `/docflow:accept`, then frozen.
 
 - **Wanted state, owner's version.** Merge what the docs and code got right, drop the
   contradictions and dead detail, and let the interview answers override everything.
-- **Concordance is a section, not a hope.** The `Docs delta` block names each existing
-  main doc this touches and states what it adds, overrides, or reconciles - the
-  "doesn't clash" check made durable, and the exact changelist `/docflow:accept` later
-  applies back into those main docs.
+- **Concordance is a section, not a hope.** The `Docs delta` block is the exact changelist
+  `/docflow:accept` later applies back into the main docs - and because those docs are the
+  authoritative source, it has to be precise enough to edit *from* directly, not a vague
+  "touches X." For each main doc this feature touches, record three things: what it says now
+  (the old abstraction/contract), what it should say instead (the new one), and the exact
+  delta between them - tagged add, override, or reconcile, and naming the old and the new
+  wherever a contract, term, or abstraction shifts. It needn't be long, but a vague delta
+  forces accept to reverse-engineer the docs from the diff - the one direction this whole
+  workflow exists to prevent.
 - **Cross-link, don't duplicate** - point at existing docs for what they already say
   well; the spec covers only this feature.
 - **Tag `@TODO`** every aspect that's decided but not yet built, so the spec reads as

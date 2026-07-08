@@ -12,11 +12,26 @@ like. 2-5 sentences. This is the part reverse-engineered docs never have; it is 
 reason this file exists. State it even when it feels obvious.]
 
 ## Docs delta
-[The concordance check, made durable - and the changelist /docflow:accept applies back
-into the main docs once the feature ships. For each existing main doc this feature touches:
-- path/to/doc.md - what it currently says - what this spec adds / overrides / reconciles.
-List "new area, no existing doc" explicitly if that's the case. This is where a clash
-with the current docs is resolved on paper before any code moves.]
+[The concordance check made durable - and the exact changelist /docflow:accept applies
+back into the main docs once the feature ships. The main docs are the authoritative
+source, so this is the section accept edits *from*: make it precise enough to apply
+directly, never a hint that sends accept back to reverse-engineer the diff. It need not
+be long, but it must be specific.
+
+One entry per existing main doc this feature touches:
+- **path/to/doc.md**
+  - Now: what the doc states today - the old abstraction, contract, or claim, cited by
+    section so accept can find the spot.
+  - Wanted: what it should state instead - the new abstraction/contract, written the way
+    the doc should read.
+  - Delta: the precise change, tagged add / override / reconcile - which section grows,
+    which sentence is overturned and by what, which two claims get squared. Name old and
+    new wherever a contract or term shifts (e.g. save() was fire-and-forget; now it
+    returns a receipt id the caller must ack).
+
+Call out "new area - no existing doc" explicitly where that's the case, and name the doc
+that should carry it. This is where every clash with the current docs gets resolved on
+paper, before any code moves.]
 
 ## Decisions
 [ADR-lite - only the choices that actually had alternatives. For each:
