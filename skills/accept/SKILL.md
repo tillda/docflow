@@ -28,6 +28,11 @@ not to silently transcribe.
 - Accept after `/sous-chef:serve` or `/sous-chef:fire` finishes and verification is green.
   No spec, or checks still red? Stop - there is nothing settled to fold in.
 
+Label the session first: run `claude-rename.sh accept-NNNN-<slug>` (the helper ships
+on PATH with this plugin; best-effort - if it is missing or errors, continue). The
+`/resume` list and a watching tmux dashboard tab then show which feature this session
+is accepting.
+
 ## 1. Reconcile the spec with reality
 
 Walk the spec against the shipped diff:

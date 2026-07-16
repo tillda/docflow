@@ -138,6 +138,12 @@ main doc: written once here, finalized by `/docflow:accept`, then frozen.
 - Keep it lean and readable - business reason first, one decision per point, no
   boilerplate intro or "future work" section.
 
+Then label the session after its spec: run `claude-rename.sh NNNN-<slug>` (the helper
+ships on PATH with this plugin). It writes the same rename record `/rename` would, so
+the `/resume` list - and a tmux dashboard tab, where one is watching - show which
+feature this session specs. Best-effort: if the helper is missing or errors, continue
+without it.
+
 ## 6. Hand off
 
 The spec is the wanted state for this feature; the project's main docs stay the durable
