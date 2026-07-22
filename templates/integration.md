@@ -48,7 +48,7 @@ The durable artifact is the spec; code is derived from it, not the other way aro
   firsthand. The scoping is yours, not Codex's - a spec may carry `@TODO` parts not in
   this run.
 - **Close the loop.** After the code ships and verifies, offer `/docflow:accept` - it
-  finalizes the spec against what actually shipped and folds its `Docs delta` into the
+  finalizes the spec against what actually shipped and folds its `Docs update` into the
   main docs (owner-gated; never a silent overwrite).
 - The numbered spec is a frozen per-feature record committed with the feature; the main
   docs stay the living source of truth.

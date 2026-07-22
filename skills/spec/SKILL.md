@@ -122,15 +122,16 @@ main doc: written once here, finalized by `/docflow:accept`, then frozen.
 
 - **Wanted state, owner's version.** Merge what the docs and code got right, drop the
   contradictions and dead detail, and let the interview answers override everything.
-- **Concordance is a section, not a hope.** The `Docs delta` block is the exact changelist
-  `/docflow:accept` later applies back into the main docs - and because those docs are the
-  authoritative source, it has to be precise enough to edit *from* directly, not a vague
-  "touches X." For each main doc this feature touches, record three things: what it says now
-  (the old abstraction/contract), what it should say instead (the new one), and the exact
-  delta between them - tagged add, override, or reconcile, and naming the old and the new
-  wherever a contract, term, or abstraction shifts. It needn't be long, but a vague delta
-  forces accept to reverse-engineer the docs from the diff - the one direction this whole
-  workflow exists to prevent.
+- **Concordance is a section, not a hope.** The `Docs update` block is the new
+  documentation itself - the text `/docflow:accept` later folds into the main docs. Write
+  it as real docs, not a changelist: flowing explanatory prose, the way each main doc
+  should read once this feature lands, understandable without the old text open beside
+  it. Alongside the new text, explain per doc what it says today that this replaces or
+  contradicts and how the new architecture differs from the old - that explanation is
+  what lets accept remove the stale claims cleanly. Terse delta-speak reads precise but
+  applies badly; if the section isn't ready to fold in nearly verbatim, accept ends up
+  reverse-engineering the docs from the diff - the one direction this whole workflow
+  exists to prevent.
 - **Cross-link, don't duplicate** - point at existing docs for what they already say
   well; the spec covers only this feature.
 - **Tag `@TODO`** every aspect that's decided but not yet built, so the spec reads as
@@ -152,7 +153,7 @@ name the next step: `/sous-chef:serve <slug>` (or `/sous-chef:fire`) implements 
 the ticket is derived from the spec (scoped and self-contained), not re-invented. If OPEN
 questions remain, name them so the owner knows what the implementer will hit. After the
 code ships and verifies, `/docflow:accept` finalizes this spec against what actually
-shipped and folds its `Docs delta` into the main docs - then the numbered spec is
+shipped and folds its `Docs update` into the main docs - then the numbered spec is
 committed with the feature and left as a frozen record.
 
 ## Rules
