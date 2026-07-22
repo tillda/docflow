@@ -123,15 +123,19 @@ main doc: written once here, finalized by `/docflow:accept`, then frozen.
 - **Wanted state, owner's version.** Merge what the docs and code got right, drop the
   contradictions and dead detail, and let the interview answers override everything.
 - **Concordance is a section, not a hope.** The `Docs update` block is the new
-  documentation itself - the text `/docflow:accept` later folds into the main docs. Write
-  it as real docs, not a changelist: flowing explanatory prose, the way each main doc
-  should read once this feature lands, understandable without the old text open beside
-  it. Alongside the new text, explain per doc what it says today that this replaces or
-  contradicts and how the new architecture differs from the old - that explanation is
-  what lets accept remove the stale claims cleanly. Terse delta-speak reads precise but
-  applies badly; if the section isn't ready to fold in nearly verbatim, accept ends up
-  reverse-engineering the docs from the diff - the one direction this whole workflow
-  exists to prevent.
+  documentation itself - the text `/docflow:accept` later folds into the main docs - and
+  it is to the docs what the rest of the spec is to the code: the complete wanted state.
+  After accept folds it in, the main docs alone must document the feature as if it had
+  always been there - so it covers everything the spec decides, and a new area with no
+  existing doc gets its full text written here too, never just a pointer at a doc to
+  create. Write it as real docs, not a changelist: flowing explanatory prose, the way
+  each main doc should read once this feature lands, understandable without the old text
+  open beside it. Alongside the new text, explain per doc what it says today that this
+  replaces or contradicts and how the new architecture differs from the old - that
+  explanation is what lets accept remove the stale claims cleanly. Terse delta-speak
+  reads precise but applies badly; if the section isn't ready to fold in nearly
+  verbatim, accept ends up reverse-engineering the docs from the diff - the one
+  direction this whole workflow exists to prevent.
 - **Cross-link, don't duplicate** - point at existing docs for what they already say
   well; the spec covers only this feature.
 - **Tag `@TODO`** every aspect that's decided but not yet built, so the spec reads as

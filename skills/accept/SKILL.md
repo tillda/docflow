@@ -61,9 +61,12 @@ fold it in; do not author until they accept.
 Edit each named main doc **in its own voice** - match the existing register (wanted-state
 prose, no history, no migration archaeology). The spec's `Docs update` text is near-final
 documentation: fold it in, adapting to the doc's voice, rather than compressing it back
-into changelog lines. Cross-link the frozen spec by its number for
-provenance; don't paste the spec's decisions or interview reasoning into the main docs -
-those stay in the record.
+into changelog lines. Then check completeness: the main docs alone should now document
+the shipped feature as if it had always been there - someone starting from scratch reads
+only them and understands it. A gap the spec's `Docs update` missed is surfaced to the
+owner and written as part of this pass, never skipped. Cross-link the frozen spec by its
+number for provenance; don't paste the spec's decisions or interview reasoning into the
+main docs - those stay in the record.
 
 ## 4. Freeze and commit
 

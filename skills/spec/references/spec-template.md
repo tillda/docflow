@@ -13,23 +13,31 @@ reason this file exists. State it even when it feels obvious.]
 
 ## Docs update
 [The concordance check made durable - the new documentation /docflow:accept folds into
-the main docs once the feature ships. The main docs are the authoritative source, so
-write this as real docs, not a changelist: flowing explanatory prose a reader could
-understand without the old text open beside it.
+the main docs once the feature ships. This section is to the docs what the rest of the
+spec is to the code: the complete wanted state. Taken together, its entries must fully
+document the newly designed version - once accept folds them in, the main docs alone
+explain the feature as if it had always been there, with nothing left that lives only
+in this spec's other sections, the chat, or the code. Write real docs, not a
+changelist: flowing explanatory prose a reader could understand without the old text
+open beside it. The per-doc split below is addressing, not a license to fragment or
+abbreviate.
 
 One entry per main doc this feature touches:
 - **path/to/doc.md** (name the section)
-  - New text: the passage as the doc should read after this feature lands - actual
+  - New text: the text as the doc should read after this feature lands - actual
     documentation in the doc's own register, explaining how the feature works and how
-    it is architected, ready to fold in nearly verbatim.
+    it is architected, at whatever length the design needs, ready to fold in nearly
+    verbatim.
   - What changed: what the doc says today that this replaces or contradicts, and how
     the new architecture differs from the old (e.g. save() was fire-and-forget; now it
     returns a receipt id the caller must ack, because acks drive the retry queue).
     This is what lets accept remove the stale claims cleanly.
 
-Call out "new area - no existing doc" explicitly where that's the case, and name the doc
-that should carry it (or the new doc to create). This is where every clash with the
-current docs gets resolved on paper, before any code moves.]
+A new area with no existing doc gets an entry like any other: name the doc (or the new
+doc to create) and write its full text here - naming a destination without writing the
+text is not an entry, and a design concern that fits no existing doc's outline still
+gets written. This is where every clash with the current docs gets resolved on paper,
+before any code moves.]
 
 ## Decisions
 [ADR-lite - only the choices that actually had alternatives. For each:
