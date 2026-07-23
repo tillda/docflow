@@ -1,27 +1,43 @@
 ---
 name: spec
-description: Turns a rough sketch into a spec before any code - surveys the feature's docs and code, surfaces where the sketch clashes, interviews you (err toward more questions), then writes a spec that /sous-chef:serve or /sous-chef:fire implements from. Use to plan or spec a feature, or when work is design-ambiguous. Head chef only - no delegation.
+description: Turns a rough sketch into a spec before any code - surveys docs and code, surfaces clashes, interviews you, then writes the feature's documentation as the spec's spine plus the build contract /sous-chef:serve or /sous-chef:fire implements from. Use to plan or spec a feature, or when work is design-ambiguous. Head chef only - no delegation.
 ---
 
-# Spec - decide the wanted state before any code
+# Spec - write the docs before the code
 
 Spec is the head chef's own work - there is no delegation here. You survey, reconcile,
-interview, and write a spec. Codex never sees this stage; planning is the most
-judgment-heavy work on the line, so it stays with you. Its output is what
-`/sous-chef:serve` or `/sous-chef:fire` then implements from.
+interview, and write a spec whose spine is the feature's documentation. Codex never
+sees this stage; planning is the most judgment-heavy work on the line, so it stays
+with you. Its output is what `/sous-chef:serve` or `/sous-chef:fire` then implements
+from.
 
 ## The governing idea: code is derived from docs, not docs from code
 
 Two directions are possible and only one is good.
 
-- **Right - code derived from a spec.** The spec is the durable, valuable artifact;
-  code is cheap to regenerate from it. Spec produces that artifact, and
-  `/sous-chef:serve` or `/sous-chef:fire` implements *from* it - the ticket's `<task>`,
-  `<done_when>`, `<interfaces>`, and `<constraints>` are derived from the spec, not
-  re-improvised from chat.
-- **Wrong - docs reverse-engineered from code afterward.** They come out over-technical,
-  drowned in low-level detail, missing the business reason, and drifting from what the
-  owner actually wanted. This skill exists to break that direction.
+- **Right - code derived from docs.** The documentation is the durable, valuable
+  artifact; code is cheap to regenerate from it. Spec writes the feature's
+  documentation before any code exists, and `/sous-chef:serve` or `/sous-chef:fire`
+  implements *from* it.
+- **Wrong - docs reverse-engineered from code afterward.** They come out
+  over-technical, drowned in low-level detail, missing the business reason, and
+  drifting from what the owner actually wanted. This skill exists to break that
+  direction.
+
+The spec makes the right direction structural - three tiers, primacy stated:
+
+1. **Documentation - the spine.** The feature's docs, written as they should read in
+   the project's main docs once this ships: wanted-state prose, one entry per main
+   doc the feature touches, each in its target doc's own voice. `/docflow:accept`
+   later places these entries into the main docs nearly verbatim.
+2. **Build contract - derived.** Scope, interfaces, done-when: the documentation
+   made checkable, the one thing the implementer takes and builds. Every contract
+   line traces to something the Documentation describes - if the implementer would
+   need what the docs don't cover, the docs are incomplete; fix them, then
+   re-derive. The contract never grows a requirement the Documentation doesn't
+   justify.
+3. **Record - provenance.** Context, decisions, open questions. It stays in the
+   frozen spec forever and never enters the main docs.
 
 So the spec describes the **wanted state** - where the owner's head is *now*, which
 usually runs ahead of the code - not what the code happens to do today. The owner's
@@ -44,8 +60,13 @@ Find the docs and code the sketch touches. This is a breadth task - dispatch `Ex
 subagents in parallel, don't read serially.
 
 - **Docs** - seed from the repo's index and the `AGENTS.md` Map; sweep `docs/`, any
-  `README.md`/`CLAUDE.md`, and any `*.md` that names the feature or its key terms. Note
-  each doc's freshness and whether it reads as intent or as implementation notes.
+  `README.md`/`CLAUDE.md`, and any `*.md` that names the feature or its key terms.
+  For each doc this feature will touch, capture a working model: its section
+  outline, its voice and altitude, and which section this feature's prose belongs
+  in - the Documentation entries are written into that model, and placement at
+  accept follows it. Note whether each doc reads as intent or as implementation
+  notes: match the good ones; where one has silted into reverse-engineered detail,
+  hold the register of the example instead of propagating it.
 - **Code** - the modules, data structures, config keys, and contracts that already
   implement or border the feature. Cite real file paths.
 
@@ -120,22 +141,29 @@ existing spec. Do **not** commit it - leave it in the working tree so it lands i
 same commit as the feature code it specifies. It is a per-feature reference record, not a
 main doc: written once here, finalized by `/docflow:accept`, then frozen.
 
+- **Documentation first - it is the spine; write it before the contract.** The
+  register comes, in order, from a docs-style skill the project ships (follow it
+  when one exists), else the surveyed docs' own voice and outline. Calibrate depth
+  against [references/example-project-doc.md](references/example-project-doc.md):
+  business, UI, and behaviour lead (~3/5 of the text, and growth goes here);
+  technical means engineering reasoning (~2/5 - what the chosen algorithm or
+  structure buys, which alternatives lost and why); implementation identifiers are
+  sparse and selective - config paths and important keys, directories of important
+  content, public contract keys, yes; variable, class, and internal names, rarely -
+  those live in code comments.
+- **One entry per main doc the feature touches**, addressed to the section the
+  survey's model named, coherent as a set with the cross-links between touched docs
+  written in. A new area with no existing doc gets its full text written here -
+  naming a destination without writing the text is not an entry. Alongside each
+  entry's new text, state what that doc says today that this replaces or
+  contradicts - that is what lets accept remove the stale claims cleanly. After
+  accept places the entries, the main docs alone must document the feature as if it
+  had always been there.
+- **Then derive the Build contract** from the Documentation - scope, interfaces,
+  done-when. Real code shapes belong here; identifier-dense is right in the
+  contract, which is for the implementer, not the docs.
 - **Wanted state, owner's version.** Merge what the docs and code got right, drop the
   contradictions and dead detail, and let the interview answers override everything.
-- **Concordance is a section, not a hope.** The `Docs update` block is the new
-  documentation itself - the text `/docflow:accept` later folds into the main docs - and
-  it is to the docs what the rest of the spec is to the code: the complete wanted state.
-  After accept folds it in, the main docs alone must document the feature as if it had
-  always been there - so it covers everything the spec decides, and a new area with no
-  existing doc gets its full text written here too, never just a pointer at a doc to
-  create. Write it as real docs, not a changelist: flowing explanatory prose, the way
-  each main doc should read once this feature lands, understandable without the old text
-  open beside it. Alongside the new text, explain per doc what it says today that this
-  replaces or contradicts and how the new architecture differs from the old - that
-  explanation is what lets accept remove the stale claims cleanly. Terse delta-speak
-  reads precise but applies badly; if the section isn't ready to fold in nearly
-  verbatim, accept ends up reverse-engineering the docs from the diff - the one
-  direction this whole workflow exists to prevent.
 - **Cross-link, don't duplicate** - point at existing docs for what they already say
   well; the spec covers only this feature.
 - **Tag `@TODO`** every aspect that's decided but not yet built, so the spec reads as
@@ -151,14 +179,16 @@ without it.
 
 ## 6. Hand off
 
-The spec is the wanted state for this feature; the project's main docs stay the durable
-source of truth and are updated from it at the very end. Point the owner at the spec and
-name the next step: `/sous-chef:serve <slug>` (or `/sous-chef:fire`) implements from it -
-the ticket is derived from the spec (scoped and self-contained), not re-invented. If OPEN
-questions remain, name them so the owner knows what the implementer will hit. After the
-code ships and verifies, `/docflow:accept` finalizes this spec against what actually
-shipped and folds its `Docs update` into the main docs - then the numbered spec is
-committed with the feature and left as a frozen record.
+The spec carries the feature's documentation and its build contract; the project's
+main docs stay the durable source of truth and receive that documentation at the very
+end. Point the owner at the spec and name the next step: `/sous-chef:serve <slug>` (or
+`/sous-chef:fire`) implements from it - the ticket is derived from the spec's Build
+contract (scoped and self-contained), not re-invented, with the Documentation as the
+intent behind it. If OPEN questions remain, name them so the owner knows what the
+implementer will hit. After the code ships and verifies, `/docflow:accept` finalizes
+this spec against what actually shipped and places its `Documentation` into the main
+docs - then the numbered spec is committed with the feature and left as a frozen
+record.
 
 ## Rules
 
@@ -172,6 +202,9 @@ committed with the feature and left as a frozen record.
   not.
 - Show the full drafted spec in chat and get approval before writing any file - the
   owner approves the actual content, never just a summary of it.
+- The Documentation section is the spec's spine, written first and in the project's
+  docs register; the Build contract derives from it and never carries a requirement
+  the Documentation doesn't justify.
 - The spec is the wanted state; tag not-yet-built parts `@TODO`.
 - The spec lives in a numbered per-feature archive separate from the main docs and is
   committed with the feature it specifies - a frozen record, not a competing source of
