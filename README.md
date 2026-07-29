@@ -6,7 +6,7 @@ built to pair with the [sous-chef](https://github.com/tomascupr/sous-chef) orche
 **The durable artifact is the documentation - the spec writes it before the code; code
 is derived from it, not the other way around.**
 
-## The two skills
+## The three skills
 
 - **`/docflow:spec`** - surveys a feature's existing docs and code, interviews you to a
   coherent spec (erring toward more questions), and writes it to
@@ -16,8 +16,13 @@ is derived from it, not the other way around.**
 - **`/docflow:accept`** - after the code ships and verifies, finalizes the spec against
   what actually shipped and places its documentation into your main docs, *from
   intent* - never reverse-engineered from the diff, and always owner-gated.
+- **`/docflow:reconstruct-docs`** - editorial pass over an *existing* feature whose
+  docs have gone stale: gathers all its docs and code, reconciles them, interviews
+  you to the wanted end state, then writes a clean `<feature>.new.md` spec plus a
+  `<feature>.TODO.md` punch-list of the wanted-vs-actual gaps into `<docs_dir>/new/`.
+  Heavyweight and deliberate; slash-only, so it never fires by accident.
 
-Both are **head-chef-only**: no delegation, no Codex, no setup. Pure planning and
+All three are **head-chef-only**: no delegation, no Codex, no setup. Pure planning and
 documentation judgment.
 
 ## How it fits with sous-chef
@@ -28,6 +33,10 @@ docflow is the docs-driven *bookends*; sous-chef is the *engine* in between:
 /docflow:spec  →  /sous-chef:serve (or :fire)  →  /docflow:accept
    the spec          implement from it              place the docs into main docs
 ```
+
+`/docflow:reconstruct-docs` sits beside this loop rather than in it: a docs-repair
+pass for a feature that already exists, whose `.new.md`/`.TODO.md` output a later
+session takes as the source of truth to bring the code and other docs up to.
 
 The two plugins stay cleanly separated. docflow points *forward* at `/sous-chef:*`; it
 never edits sous-chef. The one piece of glue that makes `serve` aware of the loop lives
