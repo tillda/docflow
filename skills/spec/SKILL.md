@@ -1,14 +1,14 @@
 ---
 name: spec
-description: Turns a rough sketch into a spec before any code - surveys docs and code, surfaces clashes, interviews you, then writes the feature's documentation as the spec's spine plus the build contract /sous-chef:serve or /sous-chef:fire implements from. Use to plan or spec a feature, or when work is design-ambiguous. Head chef only - no delegation.
+description: Turns an unsettled feature into a numbered spec through evidence gathering, owner interviews, and a checkable build contract. Use before implementation when what or why is unclear. Claude lead owns decisions and prose; read-only survey subagents may assist.
 ---
 
 # Spec - write the docs before the code
 
-Spec is the head chef's own work - there is no delegation here. You survey, reconcile,
-interview, and write a spec whose spine is the feature's documentation. Codex never
-sees this stage; planning is the most judgment-heavy work on the line, so it stays
-with you. Its output is what `/sous-chef:serve` or `/sous-chef:fire` then implements
+The Claude lead reconciles findings, interviews the owner, and writes the spec.
+Read-only survey subagents may gather evidence; they do not decide requirements
+or author the spec. Codex implementation workers do not receive this stage;
+planning stays with the lead. Its output is what `/sous-chef:serve` or `/sous-chef:fire` then implements
 from.
 
 ## The governing idea: code is derived from docs, not docs from code
@@ -192,7 +192,8 @@ record.
 
 ## Rules
 
-- Head chef only - no Codex, no delegation, no profile needed. A git repo is enough to
+- Claude lead owns decisions and prose; read-only survey subagents may assist.
+  No Codex implementation delegation or profile is needed. A git repo is enough to
   commit the spec into.
 - Survey and reconcile before asking; never author on an incoherent picture.
 - Every doc/code clash is surfaced - asked in a round, or listed OPEN in the spec.

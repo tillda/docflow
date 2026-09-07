@@ -6,7 +6,7 @@ sous-chef orchestrator. Markdown and JSON only - no build step, no code to compi
 ## Map
 
 - `.claude-plugin/` - plugin + marketplace manifests
-- `skills/spec|accept/` - the two skills (each `SKILL.md` + optional `references/` -
+- `skills/spec|accept|reconstruct-docs/` - the three skills (each `SKILL.md` + optional `references/` -
   spec ships the spec template and `example-project-doc.md`, the register/depth exemplar)
 - `templates/` - `integration.md` - how and where to wire the docflow-sous-chef loop into CLAUDE.md
 
@@ -20,4 +20,5 @@ sous-chef orchestrator. Markdown and JSON only - no build step, no code to compi
   step-by-step scaffolding a strong model doesn't need.
 - Frontmatter descriptions are third person, state what the skill does AND when to use
   it, under ~350 characters, no ": " (YAML plain scalars break on it - use " - ").
-- Both skills are head-chef-only - no Codex, no delegation, no setup.
+- Spec synthesis, interviews and acceptance stay with the Claude lead; read-only
+  survey subagents are allowed. No Codex implementation delegation during planning.
