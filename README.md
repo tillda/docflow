@@ -32,7 +32,9 @@ and once the feature ships, that same prose lands in your main docs.
   existing docs and code, interviews you to a coherent spec (erring toward more
   questions), and writes it to `docs/tickets/NNNN-<slug>.md`. The spec's spine is the
   feature's documentation written before the code; a build contract derived from it
-  is what the implementer builds from.
+  is what the implementer builds from. An owner-confirmed Scope sets what this build
+  delivers and what it must not start, so the implementer polishes what was asked
+  instead of building what wasn't.
 - **`/docflow:accept`** - *closes the loop after the code ships.* Once the feature
   verifies, finalizes the spec against what actually shipped and places its
   documentation into your main docs, *from intent* - never reverse-engineered from

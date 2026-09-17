@@ -1,8 +1,9 @@
 # Spec template
 
-Fill every section. Delete one only if it is genuinely empty for this feature. The spec
-describes the **wanted state**; tag anything decided-but-not-yet-built `@TODO`. The
-`Documentation` section is the spine - write it first; derive `Build contract` from it.
+Fill every section. Delete one only if it is genuinely empty for this feature; `Scope`
+never is. The spec describes the **wanted state**; tag anything
+decided-but-not-yet-built `@TODO`. The `Documentation` section is the spine - write it
+first; derive `Build contract` from it, inside `Scope`.
 
 ```md
 # <Feature> spec
@@ -11,6 +12,21 @@ describes the **wanted state**; tag anything decided-but-not-yet-built `@TODO`. 
 [The WHY, in product/business terms - the problem, who it's for, what success looks
 like. 2-5 sentences. This is the part reverse-engineered docs never have; it is the
 reason this file exists. State it even when it feels obvious.]
+
+## Scope
+[The boundary of this build, confirmed item by item with the owner. Documentation
+describes the wanted state, usually more than one build delivers; this section says
+what gets built now and what must not be started. Keep the last bullet verbatim.]
+
+- In
+  - [A part of Documentation this build delivers. Polishing and tuning it is in
+    scope: edge cases, error handling, UX detail, performance, tests.]
+- Out - owner-confirmed; do not start
+  - [Excluded item] - [where it goes: a later spec, another feature, or never]
+  - [Each Documentation `@TODO` this build does not deliver] - deferred
+- Unlisted work that does not refine an In item is out: a new capability, screen,
+  command, endpoint, config key, or data kind, or a change to a neighbouring feature.
+  Record it under OPEN instead of building it.
 
 ## Documentation
 [The spec's spine - the feature's documentation, written before the code. One entry
@@ -37,14 +53,11 @@ left that lives only in this spec's other sections, the chat, or the code.]
 
 ## Build contract
 [Derived from Documentation - the documentation made checkable, the one thing the
-implementer takes and builds. Every line here traces to something Documentation
-describes; if the implementer needs more, the Documentation is incomplete - fix it
-there first. Identifier-dense is right here: this section is for the implementer,
-not the docs.]
+implementer takes and builds, within Scope's In. Every line here traces to something
+Documentation describes; if the implementer needs more, the Documentation is
+incomplete - fix it there first. Identifier-dense is right here: this section is for
+the implementer, not the docs.]
 
-- Scope
-  - In: [what this feature covers]
-  - Out: [what it deliberately does not - the boundary that stops scope creep]
 - Interfaces / contracts
   [Exact signatures, types, API shapes, data structures, or config keys other code
   depends on. Paste real code, not prose. This feeds the ticket's <interfaces>.]

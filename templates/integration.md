@@ -47,7 +47,8 @@ is derived from it, not the other way around.
   ticket *from* that spec: pull the spec's done-when, interfaces, and constraints into
   the ticket, scoped to the run, and cite the spec path so Codex reads the full intent
   firsthand. The scoping is yours, not Codex's - a spec may carry `@TODO` parts not in
-  this run.
+  this run. Copy the spec's Scope Out list and unlisted-work rule into `<constraints>`
+  verbatim, with any files they rule out under Do NOT touch.
 - **Close the loop.** After the code ships and verifies, offer `/docflow:accept` - it
   finalizes the spec against what actually shipped and places its `Documentation` into
   the main docs (owner-gated; never a silent overwrite).

@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Turns an unsettled feature into a numbered spec through evidence gathering, owner interviews, and a checkable build contract. Use before implementation when what or why is unclear. Claude lead owns decisions and prose; read-only survey subagents may assist.
+description: Turns an unsettled feature into a numbered spec through evidence gathering, owner interviews, a confirmed in/out scope, and a checkable build contract. Use before implementation when what or why is unclear. Claude lead owns decisions and prose; read-only survey subagents may assist.
 ---
 
 # Spec - write the docs before the code
@@ -35,7 +35,8 @@ The spec makes the right direction structural - three tiers, primacy stated:
    line traces to something the Documentation describes - if the implementer would
    need what the docs don't cover, the docs are incomplete; fix them, then
    re-derive. The contract never grows a requirement the Documentation doesn't
-   justify.
+   justify. Its Scope is written up front, right after Context, so the owner and
+   the implementer read the boundary before anything else.
 3. **Record - provenance.** Context, decisions, open questions. It stays in the
    frozen spec forever and never enters the main docs.
 
@@ -43,6 +44,22 @@ So the spec describes the **wanted state** - where the owner's head is *now*, wh
 usually runs ahead of the code - not what the code happens to do today. The owner's
 answers are the decider: docs and code are starting material, but where any of them
 conflicts with what the owner says in the interview, the owner wins.
+
+## Scope: what this build must not start
+
+Implementers, LLM ones especially, build more than they are asked to: the adjacent
+feature, the generalisation, the `@TODO` that reads like a requirement. Wanted-state
+prose invites this, because it describes more than one build delivers. The spec's
+Scope is the counterweight, and the owner confirms it item by item.
+
+- **In** - the parts of the Documentation this build delivers. Polishing and tuning
+  them is in scope: edge cases, error handling, UX detail, performance, tests.
+- **Out** - what this build must not start, each item with where it goes: a later
+  spec, another feature, or never. Every `@TODO` this build doesn't deliver is listed.
+- **Unlisted work** - out unless it refines an In item: a new capability, screen,
+  command, endpoint, config key, or data kind, or a change to a neighbouring feature,
+  is out even when no Out line names it. The implementer records it under OPEN
+  instead of building it.
 
 ## When to spec vs. go straight to serve
 
@@ -82,6 +99,9 @@ docs claim and the code does), and diff them. Group the friction:
 - **Code gaps** - the sketch wants something the code doesn't do yet (usually where the
   owner is ahead of the code).
 - **Ambiguities** - under-specified everywhere; genuinely unsettled.
+- **Scope candidates** - adjacent work an eager implementer would start: code gaps
+  and doc promises the sketch doesn't ask for, the natural next feature, a
+  generalisation of the requested case, wanted-state parts too large for one build.
 
 Every clash is **mandatory to surface** - never silently pick a side, never quietly
 resolve toward the code because it "seems obvious." This list is the raw material for
@@ -110,6 +130,12 @@ dependencies, a clear source of truth).
 - Drop to low-level questions only when the choice gates the whole feature (data
   structure A allows X but forecloses Y). Ordinary implementation detail is not the
   owner's to decide here.
+- **Confirm the boundary explicitly.** At least one question set is about scope:
+  propose concrete Out candidates (the scope candidates, plus what you would expect
+  an implementer to add unasked) and ask which are out, in, or deferred - multiSelect
+  suits this. Ask which wanted-state parts this build delivers and which stay
+  `@TODO`. Recommend out when in doubt. An empty Out list means the question was
+  never asked; an item still unsettled at the round cap is out and listed OPEN.
 
 ## 4. Draft and confirm - the gate
 
@@ -124,6 +150,8 @@ line per item:
 
 - **Decided** - the wanted-state calls reached this run.
 - **Clarified** - each drift or ambiguity now resolved, with its resolution.
+- **Out of scope** - each confirmed exclusion, so the boundary is reviewed as
+  deliberately as the decisions.
 - **Open** - anything unsettled at the round cap, headed for the spec's OPEN section.
 - **Output** - the spec's file path.
 
@@ -159,9 +187,16 @@ main doc: written once here, finalized by `/docflow:accept`, then frozen.
   contradicts - that is what lets accept remove the stale claims cleanly. After
   accept places the entries, the main docs alone must document the feature as if it
   had always been there.
-- **Then derive the Build contract** from the Documentation - scope, interfaces,
-  done-when. Real code shapes belong here; identifier-dense is right in the
-  contract, which is for the implementer, not the docs.
+- **Scope from the interview, up front.** In names the Documentation parts this build
+  delivers; Out holds only owner-confirmed exclusions, each with its destination, and
+  names every `@TODO` left for later; the unlisted-work rule is written into the
+  section so the implementer reads it. Out is a boundary, not a roadmap - one line
+  per item.
+- **Then derive the Build contract** from the Documentation - interfaces and
+  done-when, inside Scope's In. Real code shapes belong here; identifier-dense is
+  right in the contract, which is for the implementer, not the docs. A done-when
+  criterion that needs an Out item means the Scope is wrong - settle it with the
+  owner.
 - **Wanted state, owner's version.** Merge what the docs and code got right, drop the
   contradictions and dead detail, and let the interview answers override everything.
 - **Cross-link, don't duplicate** - point at existing docs for what they already say
@@ -182,13 +217,15 @@ without it.
 The spec carries the feature's documentation and its build contract; the project's
 main docs stay the durable source of truth and receive that documentation at the very
 end. Point the owner at the spec and name the next step: `/sous-chef:serve <slug>` (or
-`/sous-chef:fire`) implements from it - the ticket is derived from the spec's Build
-contract (scoped and self-contained), not re-invented, with the Documentation as the
-intent behind it. If OPEN questions remain, name them so the owner knows what the
-implementer will hit. After the code ships and verifies, `/docflow:accept` finalizes
-this spec against what actually shipped and places its `Documentation` into the main
-docs - then the numbered spec is committed with the feature and left as a frozen
-record.
+`/sous-chef:fire`) implements from it - the ticket is derived from the spec's Scope
+and Build contract (scoped and self-contained), not re-invented, with the
+Documentation as the intent behind it. The Out list and the unlisted-work rule carry
+into the ticket's constraints verbatim. Restate the Out list in one line so the owner
+sees what the implementer is told not to build. If OPEN questions remain, name them
+so the owner knows what the implementer will hit. After the code ships and verifies,
+`/docflow:accept` finalizes this spec against what actually shipped and places its
+`Documentation` into the main docs - then the numbered spec is committed with the
+feature and left as a frozen record.
 
 ## Rules
 
@@ -199,6 +236,9 @@ record.
 - Every doc/code clash is surfaced - asked in a round, or listed OPEN in the spec.
   Never resolved silently.
 - The owner's interview answers override docs and code when they conflict.
+- Out of scope is owner-confirmed, never inferred silently: propose candidates, get
+  each one decided, and state the default - work that doesn't refine an In item is
+  out.
 - Always ask a real second round; over-asking is cheap, a baked-in wrong assumption is
   not.
 - Show the full drafted spec in chat and get approval before writing any file - the
