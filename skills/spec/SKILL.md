@@ -220,8 +220,11 @@ end. Point the owner at the spec and name the next step: `/sous-chef:serve <slug
 `/sous-chef:fire`) implements from it - the ticket is derived from the spec's Scope
 and Build contract (scoped and self-contained), not re-invented, with the
 Documentation as the intent behind it. The Out list and the unlisted-work rule carry
-into the ticket's constraints verbatim. Restate the Out list in one line so the owner
-sees what the implementer is told not to build. If OPEN questions remain, name them
+into the ticket's constraints verbatim. When Claude implements in this same session,
+it still carries the interview: context the build relies on but the spec doesn't
+hold can be added to the spec in short form, in the section it belongs to, and named
+to the owner - so the spec, not the session, stays the record. Restate the Out list
+in one line so the owner sees what the implementer is told not to build. If OPEN questions remain, name them
 so the owner knows what the implementer will hit. After the code ships and verifies,
 `/docflow:accept` finalizes this spec against what actually shipped and places its
 `Documentation` into the main docs - then the numbered spec is committed with the
