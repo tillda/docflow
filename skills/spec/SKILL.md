@@ -130,17 +130,19 @@ dependencies, a clear source of truth).
 - Drop to low-level questions only when the choice gates the whole feature (data
   structure A allows X but forecloses Y). Ordinary implementation detail is not the
   owner's to decide here.
-- **The fixed out-of-scope question.** Every run asks the boundary the same way, so the
-  owner recognizes it on sight: **AskUserQuestion**, `multiSelect: true`, header
-  `Out of scope`, and this question text verbatim -
+- **The fixed out-of-scope question.** It is the one inverted question in a run of
+  positive ones, so it is marked as such and looks identical every time:
+  **AskUserQuestion**, `multiSelect: true`, header `⛔ OUT`, and this question text
+  verbatim, sign and capitals included -
 
-  > Tick what to keep out of scope.
+  > ⛔ TICK WHAT TO KEEP OUT OF SCOPE.
 
-  One option per exclusion candidate, four per question; with more candidates, repeat
-  the same header and text with `(2 of 3)` appended rather than trimming the list.
-  Unticked means In - this build delivers it. Never ask the boundary in the In
-  direction, and never offer out/in/deferred as three options: the tool returns only
-  the ticked labels, so the ticked set must be the Out list.
+  The sign and the capitals are the signal that a tick now means *no*; never soften
+  them to sentence case and never ask the boundary in the In direction. One option per
+  exclusion candidate, four per question; with more candidates, repeat the same header
+  and text with `(2 of 3)` appended rather than trimming the list. Unticked means In -
+  this build delivers it. Never offer out/in/deferred as three options: the tool
+  returns only the ticked labels, so the ticked set must be the Out list.
 - **Volunteer what you would build unasked.** Candidates are the step-2 scope candidates
   *plus* every addition you can feel yourself reaching for - the empty state, the
   setting, the migration, the shortcut, the second entry point, the neighbouring screen
