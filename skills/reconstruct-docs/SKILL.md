@@ -260,15 +260,60 @@ already know the answer.
     one). Whatever is still unsettled at the cap goes into the `.TODO.md` as an open
     question to revisit (Phase 6), not into more questions.
   - Never drip questions one at a time — always fill the batch.
-- Phrase **high-level, not technical** — give plain-English implications and UI
+- Phrase **high-level, not technical** — plain-English implications and UI
   consequences, not multiple-choice implementation options. "When the download
   finishes, should the row turn green immediately or only after a re-check?" beats
-  "should we call `refresh()` synchronously?"
+  "should we call `refresh()` synchronously?" The next section is the test for this
+  and the two ways out; it is not optional.
 - Lead each question with the tension that prompted it ("the doc says the overview
   auto-downloads, the code requires a button — which is wanted?").
 - Offer a recommended option first when you have one, but let the owner override.
 - Anything already settled in `<changes>` is a given — don't re-ask it, but do ask
   any follow-up it raises.
+
+### Keep every question answerable from the owner's chair
+
+The owner knows the **product**: what the app does, what they see, what they want it
+to do. They do not necessarily know a script's name, a class, an internal call, a
+module path, or a config key they never edit themselves. A question that cannot be
+parsed without one of those is not a hard question — it is an **unanswerable** one,
+and an unanswerable question comes back as a guess, which you then write into the
+doc as if it were intent.
+
+**The test, applied to every question and every option:** would the owner use this
+word themselves when describing the app out loud? If not, it does not belong in the
+question text or in the option labels.
+
+Two ways out. Take the first that works:
+
+1. **Translate it into what the owner can see or decide.** State the behaviour, the
+   UI consequence, the cost, or the limit — never the mechanism. Name a file only
+   where the owner edits that file themselves.
+   - Not "should the derive join on the admin table or the place grid?" but "should a
+     town keep its label when the region around it is unnamed?"
+   - Not "should `ensureStore()` run at boot or on first read?" but "should the app
+     be slower to start, or slower the first time you open a region?"
+2. **Explain first, in a message, then ask.** Some choices genuinely do not reduce —
+   two storage shapes with different limits, two places a fix can land, a trade the
+   owner has to understand to decide. Then the explanation is **an ordinary text
+   response before the tool call**, not crammed into the dialog:
+   - what the situation is, in two or three plain sentences;
+   - each option in its own short paragraph — what it means for the app, what it
+     costs, what it forecloses;
+   - your recommendation, and why.
+
+   Only then call **AskUserQuestion**, with labels that point back at what you just
+   explained ("A — one store, hard 2 GB limit"), so the dialog is a *choice* and the
+   reasoning is above it where the owner can re-read it while deciding.
+
+An option description is **too small to hold an explanation**. If the dialog is the
+only place the reasoning appears, the question was asked too early.
+
+And the third way out, always available: **do not ask.** Ordinary implementation
+detail is not the owner's to decide here (the priority list above), and a question
+only you can answer is one for you to answer. This is **not** a way around the
+mandatory surfacing of doc↔code drift: an unasked drift still goes into the
+`.TODO.md` as an open question (Phase 6), with your reading named as a reading.
 
 ### When to stop
 
@@ -455,6 +500,12 @@ files are ignored as sources — Phase 1 — so this never compounds across runs
 - Cite real file paths in your reconciliation and punch-list.
 - Most questions are high-level/conceptual; low-level questions only for
   big-blast-radius choices.
+- **Every question is answerable from the owner's chair.** No script, class, call,
+  module path or config key the owner does not use themselves — translate it into
+  behaviour and consequence, or explain the options in a message **before** the
+  dialog and let the dialog carry only the choice. An option description cannot hold
+  the explanation. If neither route works, the question is yours to answer, not
+  theirs.
 - No sycophancy, no padding.
 
 ---

@@ -189,8 +189,9 @@ that would have to re-derive it.
    `AskUserQuestion`, 4 per call, **one round minimum, three at most**. A bigger
    discrepancy earns the further rounds. High-level and plain-English — "the doc
    says the overview auto-downloads, the code needs a button — which is wanted?",
-   never "should we call `refresh()` synchronously?" **Asking is cheap and the
-   answers are the most valuable input the pass gets** — ask whenever the drift is
+   never "should we call `refresh()` synchronously?" — the owner's-chair test below
+   decides every question's wording. **Asking is cheap and the answers are the most
+   valuable input the pass gets** — ask whenever the drift is
    genuine, even when you think you know the answer. Anything the rounds do not
    settle goes into the report's **Open questions**, never decided quietly.
 5. **Write** the report, then put it to the owner. Discovery ends there; stage B
@@ -207,6 +208,54 @@ phrases, followed by what that side actually says:
 
 Use the formulation wherever it fits. An option that is neither side — a third
 behaviour the owner might want instead — is worded plainly and comes last.
+
+## Keep every question answerable from the owner's chair
+
+Both halves of that formulation end in "in plain English", and that is the part that
+decides whether the question works. The owner knows the **product**: what the app
+does, what they see, what they want it to do. They do not necessarily know a
+script's name, a class, an internal call, a module path, or a config key they never
+edit themselves. A drift question that cannot be parsed without one of those is not
+a hard question — it is an **unanswerable** one, and an unanswerable question comes
+back as a guess, which you then record as the owner's decision.
+
+**The test, applied to every question and every option:** would the owner use this
+word themselves when describing the app out loud? If not, it does not belong in the
+question text or in the option labels. The finding keeps the identifiers, the paths
+and the line numbers — the report is read by a fixer. The question does not.
+
+Two ways out. Take the first that works:
+
+1. **Translate it into what the owner can see or decide.** State the behaviour, the
+   UI consequence, the cost, or the limit — never the mechanism. Name a file only
+   where the owner edits that file themselves.
+   - Not "`DOCS are right:` the derive joins on the admin table" but "`DOCS are
+     right:` a town keeps its label even where the region around it is unnamed".
+   - Not "`CODE is right:` `ensureStore()` runs on first read" but "`CODE is right:`
+     the app starts fast and pauses the first time you open a region".
+2. **Explain first, in a message, then ask.** Some drifts genuinely do not reduce —
+   the two sides differ in a way the owner has to understand to pick between, or the
+   fix could land in either of two places with different consequences. Then the
+   explanation is **an ordinary text response before the tool call**, not crammed
+   into the dialog:
+   - what the two sources actually say, in two or three plain sentences;
+   - what each side means for the app — what it costs, what it forecloses;
+   - your recommendation, and why.
+
+   Only then call **AskUserQuestion**, with `CODE is right:` / `DOCS are right:`
+   labels short enough to scan, pointing back at what you just explained. The dialog
+   carries the **choice**; the reasoning stays above it, where the owner can re-read
+   it while deciding.
+
+An option description is **too small to hold an explanation**. If the dialog is the
+only place your reasoning appears, the question was asked too early.
+
+And the third way out, always available: **do not ask.** A drift whose right side is
+genuinely obvious, or which only you can judge, is recorded as a finding carrying
+your reading and its confidence. That is still surfacing it — the report says which
+side you think is right and why, which is a claim the owner can overturn. It is not
+the silent resolution the discipline forbids. The rounds are for what the owner
+alone can decide.
 
 ## Your questions are yours to ask
 
@@ -444,6 +493,12 @@ so the reconstruction does not re-ask it.
 - **The code is not the authority.** Every doc↔code drift is surfaced — asked in a
   round, or listed under Open questions. Never resolved silently toward the code.
 - **Drift questions name their source**: `CODE is right: …` / `DOCS are right: …`.
+- **Every question is answerable from the owner's chair.** No script, class, call,
+  module path or config key the owner does not use themselves — translate it into
+  behaviour and consequence, or explain the sides in a message **before** the dialog
+  and let the dialog carry only the choice. The identifiers belong in the finding,
+  not in the question. If neither route works, record it as a finding with your
+  reading instead of asking.
 - **Each session asks its own questions** with `AskUserQuestion`, in its own thread,
   and **never messages the parent on its own initiative** — the parent cannot answer
   for your part, so it would only re-ask the owner in a second thread. Stuck? Offer
