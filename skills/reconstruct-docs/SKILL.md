@@ -358,39 +358,36 @@ version is what gets written.
   exist. Example: `docs/new/offline-tiles.new.md`. If `<instructions>` named an
   output file, use that instead. Never overwrite the authoritative doc in place —
   superseding it is the owner's call afterward.
-- **Style** — the doc must be **nice to read**. The register comes, in order, from
-  a docs-style skill the project ships (read it first and follow it when one
-  exists), else the surveyed docs' own voice and outline. Two calibrations either
-  way:
-  1. **Depth per
-     [../spec/references/example-project-doc.md](../spec/references/example-project-doc.md)**
-     — the same calibration `/docflow:spec` and `/docflow:accept` use: business,
-     UI, and behaviour lead (~3/5 of the text, and growth goes here); technical
-     means engineering reasoning (~2/5 — what the chosen algorithm or structure
-     buys, which alternatives lost and why); implementation identifiers are sparse
-     and selective — config paths and important keys, directories of important
-     content, public contract keys, yes; variable, class, and internal names,
-     rarely — those live in code comments. **Wanted-state only — no history, no
-     "previously", no migration archaeology.**
-  2. **The high-level design specs in the project's docs directory.** Read a
-     couple as samples. They hold the same register but lean a little more on
-     **readable owner's-voice prose**
-     that explains the *why* and the design tension behind a choice, with a worked
-     example or a small table where it helps. Match that feel: a doc a person
-     actually enjoys reading, not a terse fragment table.
+- **Style — not this skill's to invent.** The register comes from the project's
+  **docs-style skill** when it ships one: read that skill first, follow it, and read
+  the **exemplar doc it pins** — a real, finished doc in the repo — before writing a
+  line. That skill and its exemplar outrank every style statement in this file.
+  **Wanted-state only — no history, no "previously", no migration archaeology.**
+  - **No docs-style skill, or it pins no exemplar?** Calibrate depth against
+    [../spec/references/example-project-doc.md](../spec/references/example-project-doc.md)
+    — the same calibration `/docflow:spec` and `/docflow:accept` use — and read two of
+    the project's own high-level design specs for voice and outline.
 - **Lean slightly more concise than usual.** This is software-development
   documentation, not an essay. Say each thing **once**: don't restate the same
   point in two places, don't paste back code snippets already shown in the doc, and
   don't spell out general programming knowledge a developer already carries. Cut
   anything a competent reader of this codebase wouldn't need. (Concise, not
   fragmentary — still readable, just without the padding.)
-- **No boilerplate sections.** Skip an unspecific / throat-clearing introduction,
-  skip an "Out of scope" section, and skip a "Future directions / Future work"
-  section — open with the substance, and let `@TODO` tags and the `.TODO.md` carry
-  anything forward-looking, so the doc doesn't forward-drift on its own. (This
-  overrides any docs-style skill's optional "Out of scope" allowance for this
-  skill's output.) All else equal, **shorter is better**: every spare paragraph costs
-  tokens and context on every future LLM read of the doc.
+- **No throat-clearing introduction.** Open with the substance — what the feature is
+  and who it is for — not with a preamble about the document itself. All else equal,
+  **shorter is better**: every spare paragraph costs tokens and context on every
+  future LLM read of the doc.
+- **`Out of scope` and `Future work` are the project's call, not this skill's.** Two
+  notes on what they mean here:
+  - `Out of scope` is a **boundary cross-link list** — the neighbouring docs that own
+    what this one doesn't. It is *not* the owner-confirmed exclusion list
+    `/docflow:spec` builds from its `⛔ TICK WHAT TO KEEP OUT OF SCOPE` round; that
+    list holds back overengineering in a build contract and has no source in a
+    reconstruction, so never stage an exclusion interview to fill the section.
+  - `Future work` earns its place where it **steers a present decision** — a coming
+    feature that explains why this data structure, format, or extension point was
+    chosen. It is not a wish list, and it never carries the wanted-vs-actual gaps:
+    `@TODO` tags and the `.TODO.md` own those (Phase 6).
 - Cross-link companion docs the way the existing docs do.
 
 ## Phase 6 — Always write the `<feature-area>.TODO.md` companion
@@ -474,14 +471,17 @@ the wanted-vs-actual gaps.
 
 ## How it relates to a project's docs-style skill
 
-- **A docs-style skill** (when the project ships one) is the **house style** — the
-  rules for *how* a doc reads (register, detail density, wanted-state-only).
+- **A docs-style skill** (when the project ships one) is the **sole authority on
+  house style** — register, detail density, which sections belong, wanted-state-only
+  — and it **pins the exemplar**: one real, finished doc in the repo that shows the
+  target. This skill states no competing register of its own; its own worked example
+  calibrates only projects that ship no style skill.
 - **`reconstruct-docs`** (this one) is the **process** — gather, reconcile,
   interview, plan-and-confirm, then author. It runs multiple question rounds and reads across the
   whole codebase, so it is a deliberate, heavyweight pass — **slash-only**
   (`disable-model-invocation: true`), invoked with `/docflow:reconstruct-docs` so it never
-  fires by accident. In its final phase it **uses** the project's docs-style skill
-  for the actual prose.
+  fires by accident. In its final phase it **reads and obeys** the project's
+  docs-style skill and the exemplar it pins.
 
 Reach for this skill when the goal is "let's reconstruct the docs for feature X —
 figure out what it *should* be and write it properly," not "tweak this paragraph."

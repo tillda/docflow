@@ -8,11 +8,14 @@ docs override this example; it calibrates when they are silent.
 
 What it encodes:
 
-1. **Business, UI, and behaviour lead - about 3/5 of the doc.** When a doc grows, it
+1. **Business, UI, and behaviour lead - about 3/4 of the doc.** When a doc grows, it
    grows here, not in the technical part.
-2. **Technical means engineering reasoning - about 2/5.** What the chosen algorithm
-   or data structure buys, its efficiency, which alternatives lost and why. Never
-   code walkthroughs.
+2. **Technical is about 1/4, and only high-level.** What belongs: how the code
+   separates into app domains, input/output invariants, directory and file-name
+   conventions, the data structures and algorithms chosen and what they buy,
+   warnings and pitfalls. The share may run higher where the subject genuinely
+   carries that much high-level substance - this example sits near a third - but
+   never by padding it with implementation detail or code walkthroughs.
 3. **Implementation identifiers are sparse and selective.** Config file paths and
    their important keys, directories of important content, public contract keys -
    yes. Variable and class names, internal columns, internal module paths - rarely

@@ -196,10 +196,12 @@ main doc: written once here, finalized by `/docflow:accept`, then frozen.
   register comes, in order, from a docs-style skill the project ships (follow it
   when one exists), else the surveyed docs' own voice and outline. Calibrate depth
   against [references/example-project-doc.md](references/example-project-doc.md):
-  business, UI, and behaviour lead (~3/5 of the text, and growth goes here);
-  technical means engineering reasoning (~2/5 - what the chosen algorithm or
-  structure buys, which alternatives lost and why); implementation identifiers are
-  sparse and selective - config paths and important keys, directories of important
+  business, UI, and behaviour lead (~3/4 of the text, and growth goes here);
+  technical is ~1/4 and high-level only (domain separation, I/O invariants, file and
+  directory conventions, the data structures and algorithms chosen and what they buy,
+  warnings and pitfalls - higher only where that substance is real, never padded with
+  implementation detail); implementation identifiers are sparse and
+  selective - config paths and important keys, directories of important
   content, public contract keys, yes; variable, class, and internal names, rarely -
   those live in code comments.
 - **One entry per main doc the feature touches**, addressed to the section the
