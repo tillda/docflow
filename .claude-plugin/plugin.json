@@ -1,7 +1,7 @@
 {
   "name": "docflow",
-  "description": "Spec-first, docs-driven development for the sous-chef workflow. Ships docs-style, the project-independent house style every workflow writes in - a study-notes register plus a refactor test and a closed never-list that keep implementation detail out of docs. /docflow:spec interviews you into a numbered spec whose spine is the feature's documentation, written before any code (which /sous-chef:serve or :fire implements from), /docflow:accept places that documentation into your main docs so they stay the living source of truth, and /docflow:reconstruct-docs rebuilds an existing feature's stale docs into a clean wanted-state spec plus a gap punch-list. Head chef only - no delegation.",
-  "version": "0.5.0",
+  "description": "Spec-first, docs-driven development for the sous-chef workflow. Ships docs-style, the project-independent house style every workflow writes in - a study-notes register plus a refactor test and a closed never-list that keep implementation detail out of docs. /docflow:spec interviews you into a numbered spec whose spine is the feature's documentation, written before any code (which /sous-chef:serve or :fire implements from), /docflow:accept places that documentation into your main docs so they stay the living source of truth, /docflow:reconstruct-docs rebuilds an existing feature's stale docs into a clean wanted-state spec plus a gap punch-list, and /docflow:audit checks the whole app's docs against what shipped, one part per session and one session at a time, reporting the drift as a punch-list you triage before the same session fixes what you release. Head chef only - no Codex.",
+  "version": "0.6.0",
   "author": {
     "name": "Michal Till"
   },

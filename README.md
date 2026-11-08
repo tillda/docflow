@@ -28,7 +28,7 @@ and once the feature ships, that same prose lands in your main docs.
 
 ## The skills
 
-Three workflows, and one style they all write in:
+Four workflows, and one style they all write in:
 
 - **`docs-style`** - *the house style, and the only one the workflows obey.* The
   study-notes register, the detail density, and - the part that decides whether a doc
@@ -54,9 +54,20 @@ Three workflows, and one style they all write in:
   clean `<feature>.new.md` spec plus a `<feature>.TODO.md` punch-list of the
   wanted-vs-actual gaps into `<docs_dir>/new/`. Heavyweight and deliberate;
   slash-only, so it never fires by accident.
+- **`/docflow:audit`** - *checks the whole app's docs against what shipped.* Splits
+  the app into parts and audits them one part per session, one session at a time.
+  Discovery is read-only - reconstruct-docs cut down to its reconciliation half -
+  and ends in a drift report for that part: contradictions, undocumented features,
+  documented-but-absent features, each with real paths, a severity and enough
+  context for the fix to land. You then release which findings get fixed, the same
+  session fixes them with the picture still in its head, and the report is thrown
+  away with the commit. Slash-only.
 
-All three workflows are **head-chef-only**: no delegation, no Codex, no setup. Pure
-planning and documentation judgment.
+All four workflows are **head-chef-only**: no Codex, no setup, pure planning and
+documentation judgment. `audit` is the one that fans out - into further Claude
+sessions, each a head chef over its own part, because a part's interview has to be
+answered in its own thread. It starts one at a time and asks before starting a
+second, so you are never holding two interviews you did not agree to.
 
 ## How it fits with sous-chef
 
@@ -70,6 +81,11 @@ docflow is the docs-driven *bookends*; sous-chef is the *engine* in between:
 `/docflow:reconstruct-docs` sits beside this loop rather than in it: a docs-repair
 pass for a feature that already exists, whose `.new.md`/`.TODO.md` output a later
 session takes as the source of truth to bring the code and other docs up to.
+
+`/docflow:audit` sits *above* it: the periodic check that the loop is still holding
+across the whole app. Most of what it finds it fixes in the same session once you
+release it; what is too big for a finding list becomes a
+`/docflow:reconstruct-docs` run the report writes out ready to paste.
 
 The two plugins stay cleanly separated. docflow points *forward* at `/sous-chef:*`; it
 never edits sous-chef. The one piece of glue that makes `serve` aware of the loop lives

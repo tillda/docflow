@@ -8,7 +8,7 @@
     {
       "name": "docflow",
       "source": "./",
-      "description": "Spec-first, docs-driven development for the sous-chef workflow: /docflow:spec, /docflow:accept, and /docflow:reconstruct-docs."
+      "description": "Spec-first, docs-driven development for the sous-chef workflow: /docflow:spec, /docflow:accept, /docflow:reconstruct-docs, and /docflow:audit."
     }
   ]
 }
