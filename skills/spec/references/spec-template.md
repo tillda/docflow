@@ -35,7 +35,7 @@ verbatim once the feature ships. Write real docs, not a changelist: wanted-state
 prose a reader understands without the old text open beside it, in each target doc's
 own register - the project's docs-style skill if it ships one, else the surveyed
 docs' voice, with depth calibrated against references/example-project-doc.md
-(business/UI/behaviour lead ~3/5; technical reasoning ~2/5; implementation
+(business/UI/behaviour lead ~3/4; technical ~1/4 and high-level only; implementation
 identifiers sparse and selective).
 
 - **path/to/doc.md** (name the section)
