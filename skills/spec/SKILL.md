@@ -134,12 +134,13 @@ dependencies, a clear source of truth).
   owner recognizes it on sight: **AskUserQuestion**, `multiSelect: true`, header
   `Out of scope`, and this question text verbatim -
 
-  > Tick everything this build must NOT touch. Anything you leave unticked is IN scope.
+  > Tick what to keep out of scope.
 
   One option per exclusion candidate, four per question; with more candidates, repeat
-  the same header and text with `(2 of 3)` appended rather than trimming the list. Never
-  ask the boundary in the In direction, and never offer out/in/deferred as three options:
-  the tool returns only the ticked labels, so the ticked set must be the Out list.
+  the same header and text with `(2 of 3)` appended rather than trimming the list.
+  Unticked means In - this build delivers it. Never ask the boundary in the In
+  direction, and never offer out/in/deferred as three options: the tool returns only
+  the ticked labels, so the ticked set must be the Out list.
 - **Volunteer what you would build unasked.** Candidates are the step-2 scope candidates
   *plus* every addition you can feel yourself reaching for - the empty state, the
   setting, the migration, the shortcut, the second entry point, the neighbouring screen
