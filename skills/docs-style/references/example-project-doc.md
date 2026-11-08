@@ -1,10 +1,11 @@
 # EXAMPLE - a finished project doc in the target register
 
-This file is docflow's worked example, not documentation of docflow itself. It shows
-the register `/docflow:spec` writes a spec's `Documentation` section in, and the bar
-`/docflow:accept` holds placements to. The project it describes - webhook delivery -
-is fictional; the shape is the point. A project's own docs-style skill or existing
-docs override this example; it calibrates when they are silent.
+This file is the worked example for [docs-style](../SKILL.md), not documentation of
+docflow itself. It shows the register `/docflow:spec` writes a spec's `Documentation`
+section in, the bar `/docflow:accept` holds placements to, and the target
+`/docflow:reconstruct-docs` writes toward. The project it describes - webhook
+delivery - is fictional; the shape is the point. A project's existing docs supply
+vocabulary and may offer a sample of their own; the rules in `docs-style` decide.
 
 What it encodes:
 

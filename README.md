@@ -26,8 +26,17 @@ docflow makes that second direction structural instead of aspirational: the spec
 the feature's documentation, written before any code; the implementer builds from it;
 and once the feature ships, that same prose lands in your main docs.
 
-## The three skills
+## The skills
 
+Three workflows, and one style they all write in:
+
+- **`docs-style`** - *the house style, and the only one the workflows obey.* The
+  study-notes register, the detail density, and - the part that decides whether a doc
+  is any good - a refactor test plus a closed never-list that keep implementation
+  detail out and high-level substance in. Project-independent on purpose: a good docs
+  style does not change from codebase to codebase, so nothing has to be configured per
+  project. It also fires on its own whenever you write Markdown, not only inside a
+  docflow run.
 - **`/docflow:spec`** - *writes the docs before the code.* Surveys a feature's
   existing docs and code, interviews you to a coherent spec (erring toward more
   questions), and writes it to `docs/tickets/NNNN-<slug>.md`. The spec's spine is the
@@ -46,8 +55,8 @@ and once the feature ships, that same prose lands in your main docs.
   wanted-vs-actual gaps into `<docs_dir>/new/`. Heavyweight and deliberate;
   slash-only, so it never fires by accident.
 
-All three are **head-chef-only**: no delegation, no Codex, no setup. Pure planning and
-documentation judgment.
+All three workflows are **head-chef-only**: no delegation, no Codex, no setup. Pure
+planning and documentation judgment.
 
 ## How it fits with sous-chef
 

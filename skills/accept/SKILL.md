@@ -71,9 +71,9 @@ Placement, not translation - each entry was written for its target doc at spec t
   one.
 - Then check completeness and register: the main docs alone should now document the
   shipped feature as if it had always been there - someone starting from scratch reads
-  only them and understands it - and the new text holds the project's docs register
-  (its docs-style skill if it ships one, else the surrounding docs; depth per
-  [../spec/references/example-project-doc.md](../spec/references/example-project-doc.md)).
+  only them and understands it - and the new text holds the register of
+  [docs-style](../docs-style/SKILL.md), depth per its exemplar
+  [../docs-style/references/example-project-doc.md](../docs-style/references/example-project-doc.md).
   A gap the spec's `Documentation` missed is surfaced to the owner and written as part
   of this pass, never skipped.
 - Cross-link the frozen spec by its number for provenance; the Record (decisions,

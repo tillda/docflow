@@ -358,15 +358,21 @@ version is what gets written.
   exist. Example: `docs/new/offline-tiles.new.md`. If `<instructions>` named an
   output file, use that instead. Never overwrite the authoritative doc in place —
   superseding it is the owner's call afterward.
-- **Style — not this skill's to invent.** The register comes from the project's
-  **docs-style skill** when it ships one: read that skill first, follow it, and read
-  the **exemplar doc it pins** — a real, finished doc in the repo — before writing a
-  line. That skill and its exemplar outrank every style statement in this file.
+- **Style — not this skill's to invent.** The register is
+  [docs-style](../docs-style/SKILL.md)'s: read that skill first and follow it,
+  including the **refactor test** that decides which technical sentences belong and
+  the **closed list** of what never does — pruning low-value detail is as much the
+  job here as adding missing features. Calibrate depth against its exemplar,
+  [../docs-style/references/example-project-doc.md](../docs-style/references/example-project-doc.md).
+  Read two of the project's own high-level design specs for vocabulary and outline —
+  samples, never competing rules.
   **Wanted-state only — no history, no "previously", no migration archaeology.**
-  - **No docs-style skill, or it pins no exemplar?** Calibrate depth against
-    [../spec/references/example-project-doc.md](../spec/references/example-project-doc.md)
-    — the same calibration `/docflow:spec` and `/docflow:accept` use — and read two of
-    the project's own high-level design specs for voice and outline.
+- **Worked scenarios — an upgrade, not a sweep.** docs-style allows a worked use case
+  where it forces out behaviour a plain description leaves implicit. In a
+  reconstruction, add them **sparingly**: the hardest path or two that the interview
+  actually settled. Never one per feature, and never a case the owner has not
+  confirmed — a scenario is a behavioural claim, and a wrong one is worse than a
+  missing one.
 - **Lean slightly more concise than usual.** This is software-development
   documentation, not an essay. Say each thing **once**: don't restate the same
   point in two places, don't paste back code snippets already shown in the doc, and
@@ -469,19 +475,20 @@ override every other source. The result is two files in `<docs_dir>/new/`: the s
 `<feature-area>.new.md` and an always-written `<feature-area>.TODO.md` punch-list of
 the wanted-vs-actual gaps.
 
-## How it relates to a project's docs-style skill
+## How it relates to `docs-style`
 
-- **A docs-style skill** (when the project ships one) is the **sole authority on
-  house style** — register, detail density, which sections belong, wanted-state-only
-  — and it **pins the exemplar**: one real, finished doc in the repo that shows the
-  target. This skill states no competing register of its own; its own worked example
-  calibrates only projects that ship no style skill.
+- **[`docs-style`](../docs-style/SKILL.md)** is the **sole authority on house
+  style** — register, density, the technical keep-in/never lists, which sections
+  belong, wanted-state-only — and it ships the exemplar. It is project-independent on
+  purpose: a good docs style does not change from codebase to codebase, so the style
+  travels with the plugin and nothing here has to be configured per project. This
+  skill states no competing register of its own.
 - **`reconstruct-docs`** (this one) is the **process** — gather, reconcile,
   interview, plan-and-confirm, then author. It runs multiple question rounds and reads across the
   whole codebase, so it is a deliberate, heavyweight pass — **slash-only**
   (`disable-model-invocation: true`), invoked with `/docflow:reconstruct-docs` so it never
   fires by accident. In its final phase it **reads and obeys** the project's
-  docs-style skill and the exemplar it pins.
+  `docs-style` skill and its exemplar.
 
 Reach for this skill when the goal is "let's reconstruct the docs for feature X —
 figure out what it *should* be and write it properly," not "tweak this paragraph."

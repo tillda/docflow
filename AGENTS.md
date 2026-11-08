@@ -6,8 +6,10 @@ sous-chef orchestrator. Markdown and JSON only - no build step, no code to compi
 ## Map
 
 - `.claude-plugin/` - plugin + marketplace manifests
-- `skills/spec|accept|reconstruct-docs/` - the three skills (each `SKILL.md` + optional `references/` -
-  spec ships the spec template and `example-project-doc.md`, the register/depth exemplar)
+- `skills/docs-style/` - the house style every other skill writes in, plus
+  `references/example-project-doc.md`, the register/depth exemplar
+- `skills/spec|accept|reconstruct-docs/` - the three workflow skills (each `SKILL.md` +
+  optional `references/` - spec ships the spec template)
 - `templates/` - `integration.md` - how and where to wire the docflow-sous-chef loop into CLAUDE.md
 
 ## Working agreements

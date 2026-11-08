@@ -193,17 +193,12 @@ same commit as the feature code it specifies. It is a per-feature reference reco
 main doc: written once here, finalized by `/docflow:accept`, then frozen.
 
 - **Documentation first - it is the spine; write it before the contract.** The
-  register comes, in order, from a docs-style skill the project ships (follow it
-  when one exists), else the surveyed docs' own voice and outline. Calibrate depth
-  against [references/example-project-doc.md](references/example-project-doc.md):
-  business, UI, and behaviour lead (~3/4 of the text, and growth goes here);
-  technical is ~1/4 and high-level only (domain separation, I/O invariants, file and
-  directory conventions, the data structures and algorithms chosen and what they buy,
-  warnings and pitfalls - higher only where that substance is real, never padded with
-  implementation detail); implementation identifiers are sparse and
-  selective - config paths and important keys, directories of important
-  content, public contract keys, yes; variable, class, and internal names, rarely -
-  those live in code comments.
+  register is [docs-style](../docs-style/SKILL.md)'s - read that skill and follow it,
+  including the refactor test that decides which technical sentences belong and the
+  closed list of what never does. Calibrate depth against its exemplar,
+  [../docs-style/references/example-project-doc.md](../docs-style/references/example-project-doc.md).
+  The project's own docs supply vocabulary and may offer a sample doc; they never
+  restate the rules.
 - **One entry per main doc the feature touches**, addressed to the section the
   survey's model named, coherent as a set with the cross-links between touched docs
   written in. A new area with no existing doc gets its full text written here -
