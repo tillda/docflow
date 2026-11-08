@@ -130,12 +130,32 @@ dependencies, a clear source of truth).
 - Drop to low-level questions only when the choice gates the whole feature (data
   structure A allows X but forecloses Y). Ordinary implementation detail is not the
   owner's to decide here.
-- **Confirm the boundary explicitly.** At least one question set is about scope:
-  propose concrete Out candidates (the scope candidates, plus what you would expect
-  an implementer to add unasked) and ask which are out, in, or deferred - multiSelect
-  suits this. Ask which wanted-state parts this build delivers and which stay
-  `@TODO`. Recommend out when in doubt. An empty Out list means the question was
-  never asked; an item still unsettled at the round cap is out and listed OPEN.
+- **The fixed out-of-scope question.** Every run asks the boundary the same way, so the
+  owner recognizes it on sight: **AskUserQuestion**, `multiSelect: true`, header
+  `Out of scope`, and this question text verbatim -
+
+  > Tick everything this build must NOT touch. Anything you leave unticked is IN scope.
+
+  One option per exclusion candidate, four per question; with more candidates, repeat
+  the same header and text with `(2 of 3)` appended rather than trimming the list. Never
+  ask the boundary in the In direction, and never offer out/in/deferred as three options:
+  the tool returns only the ticked labels, so the ticked set must be the Out list.
+- **Volunteer what you would build unasked.** Candidates are the step-2 scope candidates
+  *plus* every addition you can feel yourself reaching for - the empty state, the
+  setting, the migration, the shortcut, the second entry point, the neighbouring screen
+  it would be natural to touch. Name each one in the options and let the owner tick it
+  away; an addition you never named is one the spec cannot exclude.
+- **Put the exclusions into words, not labels.** Each option's label names its feature
+  in plain language that reads as a spec bullet on its own ("undo for bulk edits", not
+  "undo"), with the reason in its description; `Other` is how the owner excludes
+  something you never proposed. Right after the round, **echo the confirmed Out list in
+  chat** - one line per ticked item, in full words, with where it goes (a later spec,
+  another feature, never). That echo is what carries the boundary into the session text
+  and into the draft's Out-of-scope orientation; where-it-goes is yours to fill from the
+  candidate, never the owner's to tick.
+- Ask which wanted-state parts this build delivers and which stay `@TODO` as its own
+  question. Recommend out when in doubt. An empty Out list means the question was never
+  asked; an item still unsettled at the round cap is out and listed OPEN.
 
 ## 4. Draft and confirm - the gate
 
@@ -239,9 +259,10 @@ feature and left as a frozen record.
 - Every doc/code clash is surfaced - asked in a round, or listed OPEN in the spec.
   Never resolved silently.
 - The owner's interview answers override docs and code when they conflict.
-- Out of scope is owner-confirmed, never inferred silently: propose candidates, get
-  each one decided, and state the default - work that doesn't refine an In item is
-  out.
+- Out of scope is owner-confirmed through the fixed out-of-scope question, never
+  inferred silently: propose candidates - including the additions you would make
+  unasked - get each one decided, and state the default - work that doesn't refine an
+  In item is out.
 - Always ask a real second round; over-asking is cheap, a baked-in wrong assumption is
   not.
 - Show the full drafted spec in chat and get approval before writing any file - the
