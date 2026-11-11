@@ -232,7 +232,31 @@ the `/resume` list - and a tmux dashboard tab, where one is watching - show whic
 feature this session specs. Best-effort: if the helper is missing or errors, continue
 without it.
 
-## 6. Hand off
+## 6. Hand off - the dispatch gate
+
+The spec is written and the build has not started. Nothing is dispatched off the back of
+it until the owner says so, and the OK is concrete - they accept a named dispatch, never
+answer a bare "shall I start?".
+
+The standing routing a dispatch reflects: research on Fable, the build on Opus, read-only
+critique on Codex - Codex plus Opus where the diff is large or risky (`/sous-chef:taste`
+is that pair). Write the dispatch as one line the owner can read and run, naming all
+three of:
+
+- **The command** - `/sous-chef:serve <slug>` or `/sous-chef:fire`, with the spec's path.
+- **Who implements, on which model** - `/sous-chef:serve` with no `--with` puts the build
+  on Codex rather than Opus, so say which one this line means.
+- **The critique** - which of the two shapes above reviews the diff, and that it is
+  read-only.
+
+When the line names all three, the owner's go-ahead on it is the OK: dispatch on it and
+ask nothing further. When any of the three is missing or left implicit, ask once with
+**AskUserQuestion**, naming the exact dispatch, before anything starts. A standing
+routing policy - the `CLAUDE.md` glue block included - decides what comes next, never
+whether to start, so it is not the OK either.
+
+Step 1's read-only `Explore` subagents stay outside the gate: they are this skill's own
+survey work and they change nothing.
 
 The spec carries the feature's documentation and its build contract; the project's
 main docs stay the durable source of truth and receive that documentation at the very
@@ -267,6 +291,11 @@ feature and left as a frozen record.
   not.
 - Show the full drafted spec in chat and get approval before writing any file - the
   owner approves the actual content, never just a summary of it.
+- A build is dispatched only on the owner's OK, and the OK is concrete: a handoff line
+  naming the command, the implementing model and the read-only critique is itself the
+  OK; an incomplete one is asked once, naming the exact dispatch, before anything
+  starts. Standing routing policy is never the OK. Read-only survey subagents are
+  outside the gate.
 - The Documentation section is the spec's spine, written first and in the project's
   docs register; the Build contract derives from it and never carries a requirement
   the Documentation doesn't justify.

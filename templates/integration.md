@@ -12,7 +12,9 @@ to your Claude instructions so Claude threads `spec → serve → accept` on its
   `/docflow:spec`, then tell Claude "serve this from the spec at `docs/tickets/00NN-…`",
   then run `/docflow:accept`.
 - **With it**, Claude does those handoffs by standing policy: `/sous-chef:serve` derives
-  its ticket from your spec and offers `/docflow:accept` once the code is green.
+  its ticket from your spec and offers `/docflow:accept` once the code is green. The
+  dispatch itself still waits for your OK - the policy decides what comes next, not that
+  a build may start.
 
 It's a convenience, not a requirement. Add it when the manual handoffs start to feel
 tedious.
@@ -50,6 +52,12 @@ is derived from it, not the other way around.
   carry `@TODO` parts not in this run. Copy the spec's Scope Out list and
   unlisted-work rule into `<constraints>` verbatim, with any files they rule out
   under Do NOT touch.
+- **Dispatch on an explicit OK.** Nothing is dispatched off a spec until I OK it, and
+  the OK is a named dispatch, not a bare yes: one line giving the command, which model
+  implements (research runs on Fable, the build on Opus, and `/sous-chef:serve` with no
+  `--with` means Codex), and the read-only critique - Codex, or Codex plus Opus for a
+  large or risky diff. A line naming all three is the OK; one missing any of them is
+  asked once before anything starts. This policy is not the OK.
 - **Close the loop.** After the code ships and verifies, offer `/docflow:accept` - it
   finalizes the spec against what actually shipped and places its `Documentation` into
   the main docs (owner-gated; never a silent overwrite).

@@ -43,7 +43,9 @@ Walk the spec against the shipped diff:
 - **Clear** every `@TODO` whose part actually shipped as specified.
 - **Flag divergence** - anything that shipped differently from the spec, or a spec item
   that didn't ship. Do NOT rewrite the spec to match the code. Surface each to the owner:
-  fix the code (a fresh `/sous-chef:fire`), or amend the spec on purpose. Their call.
+  fix the code (a fresh `/sous-chef:fire`), or amend the spec on purpose. Their call. A
+  fresh fire is a dispatch, so it goes through spec's dispatch gate: one line naming the
+  command, the implementing model and the read-only critique, OK'd before it starts.
 - **Resolve OPEN** - fold in answers the build settled; leave genuinely open ones named.
 
 The result is the finalized spec - the true end state of this feature.
@@ -95,7 +97,8 @@ divergence you surfaced or `@TODO`/OPEN item still standing.
   situates them, removes superseded claims, and keeps cross-links true.
 - Plan and get approval before editing any main doc; never overwrite hand-written prose
   silently.
-- Divergence is surfaced for the owner to resolve, never transcribed into the docs.
+- Divergence is surfaced for the owner to resolve, never transcribed into the docs. A
+  fix dispatched from it passes spec's dispatch gate first.
 - The numbered spec is finalized once, committed with the feature, then frozen.
 - Nothing runs accept automatically - you invoke it, or wire the offer into your
   `CLAUDE.md` routing (see docflow's `templates/integration.md`). It never runs

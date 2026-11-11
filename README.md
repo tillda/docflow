@@ -78,6 +78,11 @@ docflow is the docs-driven *bookends*; sous-chef is the *engine* in between:
    the spec          implement from it              place the docs into main docs
 ```
 
+The middle arrow is owner-gated. The spec's handoff names the dispatch in one line -
+the command, which model implements, and the read-only critique - and nothing starts
+until you OK that line; a line that leaves any of the three implicit is asked once
+first.
+
 `/docflow:reconstruct-docs` sits beside this loop rather than in it: a docs-repair
 pass for a feature that already exists, whose `.new.md`/`.TODO.md` output a later
 session takes as the source of truth to bring the code and other docs up to.

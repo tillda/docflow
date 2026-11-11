@@ -16,6 +16,10 @@ sous-chef orchestrator. Markdown and JSON only - no build step, no code to compi
 
 - docflow points forward at `/sous-chef:*`; it never edits the sous-chef plugin. The
   reverse glue lives in the user's `CLAUDE.md`, not here - keeps sous-chef pure upstream.
+- Dispatch is owner-gated: a handoff that starts a build names the command, the
+  implementing model and the read-only critique in one line, and that line, OK'd, is the
+  OK - an incomplete one is asked once first. Standing routing policy never substitutes
+  for it, and read-only survey subagents are outside the gate.
 - The spec's structure is Documentation (spine) → Build contract (derived) → Record
   (provenance); keep skill edits consistent with that hierarchy.
 - Keep SKILL.md bodies short and goal-directed; this targets frontier models - no
